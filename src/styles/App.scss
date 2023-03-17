@@ -1,0 +1,28 @@
+@import "./variables.scss";
+
+.App {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: $app-font;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(29, 30, 34);
+  background: linear-gradient(180deg, rgba(29, 30, 34, 1) 0%, rgba(57, 63, 77, 1) 65%);
+  h1 {
+    text-transform: uppercase;
+    font-size: 40px;
+    margin: 30px 0;
+    color: $text-color;
+    z-index: 1;
+    text-align: center;
+  }
+}
+
+@media (max-width: 800px) {
+  h1 {
+    margin: 15px 0;
+    font-size: 35px;
+  }
+}

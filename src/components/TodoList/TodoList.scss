@@ -1,0 +1,8 @@
+@import "../../styles/variables.scss";
+
+.TodoList {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 90%;
+}

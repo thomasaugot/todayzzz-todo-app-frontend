@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Neucha&display=swap");
+
+$app-font: "Neucha", cursive;
+$text-color: #feda6a;
+$todo-background: #feda6a;
+
+@mixin background-color {
+  background-color: rgb(29, 30, 34);
+  background: linear-gradient(180deg, rgba(29, 30, 34, 1) 0%, rgba(57, 63, 77, 1) 65%);
+}

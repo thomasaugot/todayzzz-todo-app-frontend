@@ -1,0 +1,17 @@
+@import "../../styles/variables.scss";
+
+.todo__element {
+  display: flex;
+  width: 30vw;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 15px;
+  background-color: $todo-background;
+}
+
+.todo__element__text {
+  flex: 1;
+  padding: 5px;
+  border: none;
+  font-size: 20px;
+}
