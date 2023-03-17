@@ -4,8 +4,4 @@ import "./styles/index.scss";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+root.render(<App />); // removed the react strictmode for the app to work (people say its a react 18 issue)

@@ -35,7 +35,7 @@ const App: React.FC = () => {
     let active = todoList;
     let complete = CompletedTodos;
 
-    // Source Logic
+    // Send completed back to active tasks
     if (source.droppableId === "TodoList") {
       add = active[source.index];
       active.splice(source.index, 1);
@@ -44,7 +44,7 @@ const App: React.FC = () => {
       complete.splice(source.index, 1);
     }
 
-    // Destination Logic
+    // Sent to completed tasks
     if (destination.droppableId === "TodoList") {
       active.splice(destination.index, 0, add);
     } else {
