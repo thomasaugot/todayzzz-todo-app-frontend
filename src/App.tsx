@@ -1,14 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputField from "./components/InputField/InputField";
 import TodoList from "./components/TodoList/TodoList";
 import { Todo } from "./model";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { Flip } from "react-awesome-reveal";
 import "./styles/App.scss";
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
   const [todoList, setTodoList] = useState<Array<Todo>>([]);
   const [CompletedTodos, setCompletedTodos] = useState<Array<Todo>>([]);
+  const [mode, setMode] = useState<"dark" | "light">(
+    localStorage.getItem("mode") === "dark" ? "dark" : "light"
+  );
+
+  // toggle the mode
+  const toggleMode = () => {
+    const newMode = mode === "dark" ? "light" : "dark";
+    setMode(newMode);
+    localStorage.setItem("mode", newMode);
+  };
+
+  // set the background color and text color based on the mode
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("dark-mode", mode === "dark");
+    root.classList.toggle("light-mode", mode === "light");
+  }, [mode]);
 
   //Handles adding todos
   const handleSubmit = (e: React.FormEvent) => {
@@ -58,7 +76,11 @@ const App: React.FC = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
-        <h1>Todayzzz</h1>
+        <Flip triggerOnce={false}>
+          <h1>Todayzzz</h1>
+        </Flip>
+        <button onClick={toggleMode}>Toggle Mode</button>
+
         <InputField todo={todo} setTodo={setTodo} handleSubmit={handleSubmit} />
         <TodoList
           todoList={todoList}

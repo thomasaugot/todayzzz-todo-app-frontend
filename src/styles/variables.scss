@@ -4,7 +4,29 @@ $app-font: "Neucha", cursive;
 $text-color: #feda6a;
 $todo-background: #feda6a;
 
-@mixin background-color {
-  background-color: rgb(29, 30, 34);
-  background: linear-gradient(180deg, rgba(29, 30, 34, 1) 0%, rgba(57, 63, 77, 1) 65%);
+$modes: (
+  light: (
+    bg-color: #fff,
+    text-color: #333,
+    bg-gradient: linear-gradient(to bottom, #fff, #f5f5f5),
+  ),
+  dark: (
+    bg-color: rgb(29, 30, 34),
+    text-color: #fff,
+    bg-gradient: linear-gradient(180deg, rgba(29, 30, 34, 1) 0%, rgba(57, 63, 77, 1) 65%),
+  ),
+);
+
+@mixin mode($mode) {
+  @each $prop, $value in map-get($modes, $mode) {
+    --#{$prop}: #{$value};
+  }
+}
+
+.dark-mode {
+  @include mode(dark);
+}
+
+.light-mode {
+  @include mode(light);
 }
