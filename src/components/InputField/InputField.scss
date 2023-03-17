@@ -2,12 +2,12 @@
 
 .input {
   display: flex;
-  width: 90vw;
+  width: 90%;
   position: relative;
   align-items: center;
 }
 .input__box {
-  @include background-color;
+  background-color: #393f4d;
   width: 100%;
   padding: 13px;
   border: 2px solid $text-color;
@@ -15,9 +15,12 @@
   outline: none;
   font-size: 18px;
   color: $text-color;
+  transition: 0.2s;
+  box-shadow: inset 0 0 5px black;
+
   &:focus ~ label,
   &:valid ~ label {
-    transform: translateY(-24px) scale(0.8);
+    transform: translateY(-26px) scale(0.6);
     padding: 0 35px;
     border-radius: 15px;
     padding: 4px 9px 4px;
@@ -54,7 +57,4 @@
     transform: scale(0.8);
     box-shadow: 0 0 5px black;
   }
-}
-
-@media (max-width: 700px) {
 }

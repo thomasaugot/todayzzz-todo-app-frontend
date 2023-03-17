@@ -1,8 +1,25 @@
 @import "../../styles/variables.scss";
 
-.TodoList {
+.columns-container {
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  width: 90%;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90vw;
+  margin-top: 10px;
+}
+
+.todos__column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px;
+  margin: 15px;
+  background-color: rgba(57, 63, 77, 1);
+  border-radius: 15px;
+  width: 43%;
+}
+
+.todos__title {
+  font-size: 30px;
+  color: $text-color;
 }

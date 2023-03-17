@@ -1,7 +1,6 @@
 @import "./variables.scss";
 
 .App {
-  margin: 0;
   width: 100vw;
   height: 100vh;
   font-family: $app-font;
@@ -17,12 +16,5 @@
     color: $text-color;
     z-index: 1;
     text-align: center;
-  }
-}
-
-@media (max-width: 800px) {
-  h1 {
-    margin: 15px 0;
-    font-size: 35px;
   }
 }
