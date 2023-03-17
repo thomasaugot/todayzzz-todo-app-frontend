@@ -19,7 +19,7 @@ const InputField: React.FC<Props> = ({ todo, setTodo, handleSubmit }) => {
         required
         className="input__box"
       />
-      <label className="input__box__label">Enter a task</label>
+      <label className="input__box__label">Add a task</label>
       <button type="submit" className="input__submit">
         GO
       </button>
