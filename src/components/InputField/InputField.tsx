@@ -5,6 +5,7 @@ interface Props {
   todo: string;
   setTodo: React.Dispatch<React.SetStateAction<string>>; // I get the type of setTodo when hovering it in App.tsx line 6
   handleSubmit: (e: React.FormEvent) => void;
+  mode: "dark" | "light";
 }
 
 const InputField: React.FC<Props> = ({ todo, setTodo, handleSubmit }) => {

@@ -4,6 +4,7 @@ import TodoList from "./components/TodoList/TodoList";
 import { Todo } from "./model";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Flip } from "react-awesome-reveal";
+import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import "./styles/App.scss";
 
 const App: React.FC = () => {
@@ -76,12 +77,23 @@ const App: React.FC = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
-        <Flip triggerOnce={false}>
-          <h1>Todayzzz</h1>
-        </Flip>
-        <button onClick={toggleMode}>Toggle Mode</button>
+        <div style={{ display: "flex" }}>
+          <Flip triggerOnce={false}>
+            <h1>Todayzzz</h1>
+          </Flip>
+          <label className="toggle">
+            <input type="checkbox" onClick={toggleMode} />
+            <span className="slider round">
+              {mode === "light" ? (
+                <MdOutlineDarkMode className="icon" />
+              ) : (
+                <MdOutlineLightMode className="icon" />
+              )}
+            </span>
+          </label>
+        </div>
 
-        <InputField todo={todo} setTodo={setTodo} handleSubmit={handleSubmit} />
+        <InputField todo={todo} setTodo={setTodo} handleSubmit={handleSubmit} mode={mode} />
         <TodoList
           todoList={todoList}
           setTodoList={setTodoList}

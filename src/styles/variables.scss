@@ -2,8 +2,11 @@
 
 $app-font: "Neucha", cursive;
 $text-color: #feda6a;
-$todo-background: #feda6a;
+$toggle-background: #feda6a;
+$toggle-checked-background: #333;
+$toggle-icon-color: #fff;
 
+// Define color modes
 $modes: (
   light: (
     bg-color: #fff,
@@ -17,16 +20,9 @@ $modes: (
   ),
 );
 
+// Define mixin to set the colors based on mode
 @mixin mode($mode) {
   @each $prop, $value in map-get($modes, $mode) {
     --#{$prop}: #{$value};
   }
-}
-
-.dark-mode {
-  @include mode(dark);
-}
-
-.light-mode {
-  @include mode(light);
 }
