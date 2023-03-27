@@ -77,23 +77,28 @@ const App: React.FC = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
-        <div style={{ display: "flex" }}>
-          <Flip triggerOnce={false}>
-            <h1>Todayzzz</h1>
-          </Flip>
-          <label className="toggle">
-            <input type="checkbox" onClick={toggleMode} />
-            <span className="slider round"></span>
-          </label>
-          {mode === "light" ? (
-            <span style={{ marginTop: "20px" }}>
-              Switch to <MdOutlineDarkMode className="icon" />
-            </span>
-          ) : (
-            <span style={{ marginTop: "20px" }}>
-              Switch to <MdOutlineLightMode className="icon" />
-            </span>
-          )}
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <div className="title-container">
+            <Flip triggerOnce={false}>
+              <h1>Todayzzz</h1>
+            </Flip>
+          </div>
+
+          <div className="toggle-container">
+            <label className="toggle">
+              <input type="checkbox" onClick={toggleMode} />
+              <span className="slider round"></span>
+            </label>
+            {mode === "light" ? (
+              <span style={{ marginTop: "20px" }}>
+                Switch to <MdOutlineDarkMode className="icon" />
+              </span>
+            ) : (
+              <span style={{ marginTop: "20px" }}>
+                Switch to <MdOutlineLightMode className="icon" />
+              </span>
+            )}
+          </div>
         </div>
 
         <InputField todo={todo} setTodo={setTodo} handleSubmit={handleSubmit} mode={mode} />
