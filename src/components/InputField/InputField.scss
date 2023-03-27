@@ -28,14 +28,15 @@
   }
   &__label {
     position: absolute;
-    left: 0;
-    padding: 10px 20px;
+    left: 12px;
+    padding: 8px 20px;
     font-size: 22px;
     border-radius: 50px;
     pointer-events: none;
     color: $text-color;
     text-transform: uppercase;
     transition: 0.5s linear;
+    background-color: #393f4d;
   }
 }
 
