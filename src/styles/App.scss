@@ -1,5 +1,24 @@
 @import "./variables.scss";
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $app-font;
+  font-size: 16px;
+  color: var(--text-color);
+  background: var(--bg-gradient);
+}
+
+.dark-mode {
+  @include mode(dark);
+}
+
+.light-mode {
+  @include mode(light);
+}
+
 .App {
   width: 100vw;
   height: 100vh;
@@ -17,11 +36,6 @@
     z-index: 1;
     text-align: center;
   }
-}
-
-// Set the default colors to light mode
-:root {
-  @include mode(light);
 }
 
 // Add classes to toggle the mode

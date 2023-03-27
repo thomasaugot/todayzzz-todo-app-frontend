@@ -1,8 +1,14 @@
-const app = require("./app");
+const express = require("express");
+const cors = require("cors");
+const app = express();
 
-// ℹ️ Sets the PORT for our app to have access to it. If no env has been set, we hard code it to 5005
-const PORT = process.env.PORT || 5005;
+app.use(cors());
+app.use(express.json());
 
-app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
+app.get("/message", (req, res) => {
+  res.json({ message: "Hello from server!" });
+});
+
+app.listen(8000, () => {
+  console.log(`Server is running on port 8000.`);
 });
