@@ -58,7 +58,7 @@ const TodoElement: React.FC<{
           )}
           <div>
             <span
-              className="icon"
+              className="iconTodos"
               onClick={() => {
                 if (!edit && !todo.isDone) {
                   setEdit(!edit);
@@ -67,10 +67,10 @@ const TodoElement: React.FC<{
             >
               <AiFillEdit />
             </span>
-            <span className="icon" onClick={() => handleDelete(todo.id)}>
+            <span className="iconTodos" onClick={() => handleDelete(todo.id)}>
               <AiFillDelete />
             </span>
-            <span className="icon" onClick={() => handleDone(todo.id)}>
+            <span className="iconTodos" onClick={() => handleDone(todo.id)}>
               <MdDone />
             </span>
           </div>
