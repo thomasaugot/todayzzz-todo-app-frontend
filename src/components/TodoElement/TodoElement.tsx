@@ -22,7 +22,7 @@ const TodoElement: React.FC<{
 
   const handleEdit = (e: React.FormEvent, id: number) => {
     e.preventDefault();
-    setTodos(todoList.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo)));
+    setTodos(todoList.map((todo) => (todo.id === id ? { ...todo, content: editTodo } : todo)));
     setEdit(false);
   };
 
