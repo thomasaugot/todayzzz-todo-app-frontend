@@ -52,8 +52,13 @@ body {
     background-color: #333;
   }
 
+  .toggle {
+    border-radius: 24px;
+    border: 2px solid #333;
+  }
+
   .icon {
-    color: #333;
+    color: $text-color;
     top: 50%;
     left: 25%;
   }
@@ -72,6 +77,11 @@ body {
     background-color: $text-color;
   }
 
+  .toggle {
+    border-radius: 24px;
+    border: 2px solid $text-color;
+  }
+
   .icon {
     color: $text-color;
     top: 50%;
@@ -86,8 +96,6 @@ body {
   width: 50px;
   height: 24px;
   margin: 1rem;
-  border-radius: 24px;
-  border: 2px solid $text-color;
 }
 
 .toggle input[type="checkbox"] {
@@ -125,5 +133,5 @@ body {
 .toggle .icon {
   position: absolute;
   transform: translate(-50%, -50%);
-  font-size: 20px;
+  font-size: 40px;
 }

@@ -83,14 +83,17 @@ const App: React.FC = () => {
           </Flip>
           <label className="toggle">
             <input type="checkbox" onClick={toggleMode} />
-            <span className="slider round">
-              {mode === "light" ? (
-                <MdOutlineDarkMode className="icon" />
-              ) : (
-                <MdOutlineLightMode className="icon" />
-              )}
-            </span>
+            <span className="slider round"></span>
           </label>
+          {mode === "light" ? (
+            <span style={{ marginTop: "20px" }}>
+              Switch to <MdOutlineDarkMode className="icon" />
+            </span>
+          ) : (
+            <span style={{ marginTop: "20px" }}>
+              Switch to <MdOutlineLightMode className="icon" />
+            </span>
+          )}
         </div>
 
         <InputField todo={todo} setTodo={setTodo} handleSubmit={handleSubmit} mode={mode} />
