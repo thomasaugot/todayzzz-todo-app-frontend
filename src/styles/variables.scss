@@ -2,20 +2,15 @@
 
 $app-font: "Neucha", cursive;
 $text-color: #feda6a;
-$toggle-background: #feda6a;
-$toggle-checked-background: #333;
-$toggle-icon-color: #fff;
 
 // Define color modes
 $modes: (
   light: (
-    bg-color: #fff,
     text-color: #333,
     bg-gradient: linear-gradient(to bottom, #fff, #f5f5f5),
   ),
   dark: (
-    bg-color: rgb(29, 30, 34),
-    text-color: #fff,
+    text-color: #feda6a,
     bg-gradient: linear-gradient(180deg, rgba(29, 30, 34, 1) 0%, rgba(57, 63, 77, 1) 65%),
   ),
 );
