@@ -1,4 +1,5 @@
 import "./InputField.scss";
+import { supabase } from "../../supabaseClient";
 
 // I create the interface so that I can define the type of my props on line 9
 interface Props {

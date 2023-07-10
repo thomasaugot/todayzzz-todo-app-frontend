@@ -1,22 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { Todo } from "../../model";
 import TodoElement from "../TodoElement/TodoElement";
 import "./TodoList.scss";
+import { supabase } from "../../supabaseClient";
 
-interface props {
+interface Props {
   todoList: Todo[];
-  setTodoList: React.Dispatch<React.SetStateAction<Array<Todo>>>;
-  setCompletedTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
-  CompletedTodos: Array<Todo>;
+  setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
+  setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  CompletedTodos: Todo[];
 }
 
-const TodoList: React.FC<props> = ({
+const TodoList: React.FC<Props> = ({
   todoList,
   setTodoList,
   CompletedTodos,
   setCompletedTodos,
 }) => {
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const { data: todos, error } = await supabase.from("todos").select("id, created_at, content");
+
+      if (todos) {
+        const formattedTodos = todos.map((todo) => ({
+          ...todo,
+          isDone: false, // Add the isDone property
+        }));
+        setTodoList(formattedTodos);
+      }
+      if (error) {
+        console.log("Error fetching todos:", error);
+      }
+    };
+
+    fetchTodos();
+  }, [setTodoList]);
+
   return (
     <div className="columns-container">
       <Droppable droppableId="TodoList">
