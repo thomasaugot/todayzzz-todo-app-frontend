@@ -35,6 +35,33 @@ const TodoList: React.FC<Props> = ({
     };
 
     fetchTodos();
+
+    const signIn = async () => {
+      let { data, error } = await supabase.auth.signInWithPassword({
+        email: "thomas.augot@hotmail.fr",
+        password: "wCTuqtkbYbJnHrmPDUGH",
+      });
+      if (error) {
+        console.log("Error signing in:", error);
+      } else {
+        console.log("Signed in successfully:", data);
+        fetchTodos(); // Call the fetchTodos function after signing in
+      }
+    };
+
+    signIn();
+
+    const todos = supabase
+      .channel("custom-all-channel")
+      .on("postgres_changes", { event: "*", schema: "public", table: "todos" }, (payload) => {
+        console.log("Change received!", payload);
+      })
+      .subscribe();
+
+    // Cleanup function
+    return () => {
+      todos.unsubscribe(); // Unsubscribe from the channel
+    };
   }, [setTodoList]);
 
   return (
