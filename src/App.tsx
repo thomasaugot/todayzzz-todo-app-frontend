@@ -4,8 +4,8 @@ import TodoList from "./components/TodoList/TodoList";
 import { Todo } from "./model";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Flip } from "react-awesome-reveal";
-import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import "./styles/App.scss";
+import DarkModeToggle from "./components/DarkModeToggle/DarkModeToggle";
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
@@ -15,12 +15,11 @@ const App: React.FC = () => {
     localStorage.getItem("mode") === "dark" ? "dark" : "light"
   );
 
-  // toggle the mode
-  const toggleMode = () => {
-    const newMode = mode === "dark" ? "light" : "dark";
-    setMode(newMode);
-    localStorage.setItem("mode", newMode);
-  };
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("dark-mode", mode === "dark");
+    root.classList.toggle("light-mode", mode === "light");
+  }, [mode]);
 
   // set the background color and text color based on the mode
   useEffect(() => {
@@ -76,7 +75,7 @@ const App: React.FC = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="App">
+      <div className={`App ${mode === "dark" ? "dark-mode" : "light-mode"}`}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <div className="title-container">
             <Flip triggerOnce={false}>
@@ -84,21 +83,7 @@ const App: React.FC = () => {
             </Flip>
           </div>
 
-          <div className="toggle-container">
-            <label className="toggle">
-              <input type="checkbox" onClick={toggleMode} />
-              <span className="slider round"></span>
-            </label>
-            {mode === "light" ? (
-              <span style={{ marginTop: "20px" }}>
-                Switch to <MdOutlineDarkMode className="icon" />
-              </span>
-            ) : (
-              <span style={{ marginTop: "20px" }}>
-                Switch to <MdOutlineLightMode className="icon" />
-              </span>
-            )}
-          </div>
+          <DarkModeToggle mode={mode} setMode={setMode} />
         </div>
 
         <InputField todo={todo} setTodo={setTodo} handleSubmit={handleSubmit} mode={mode} />
