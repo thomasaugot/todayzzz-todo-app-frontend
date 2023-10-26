@@ -1,0 +1,84 @@
+@import "../../styles/variables.scss";
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -185px;
+  width: 250px;
+  height: 100%;
+  background-color: rgba(57, 63, 77, 1);
+  color: $text-color;
+  transition: left 0.3s;
+  z-index: 1000;
+
+  &.open {
+    left: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 50px 30px;
+
+    li {
+      padding: 10px 0;
+      a {
+        text-decoration: none;
+        color: $text-color;
+        display: block;
+        padding: 5px 15px;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #555;
+        }
+      }
+    }
+  }
+
+  .toggle-button {
+    cursor: pointer;
+    display: block;
+    height: 23px;
+    width: 30px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+
+    .bar {
+      display: block;
+      height: 3px;
+      width: 100%;
+      border-radius: 10px;
+      background: $text-color;
+      &:nth-child(1) {
+        transform-origin: 0% 0%;
+        transition: transform 0.3s ease-in-out;
+      }
+      &:nth-child(2) {
+        transition: transform 0.2s ease-in-out;
+      }
+      &:nth-child(3) {
+        transform-origin: 0% 100%;
+        transition: transform 0.3s ease-in-out;
+      }
+    }
+  }
+  &.open {
+    .bar {
+      &:nth-child(1) {
+        transform: rotate(45deg);
+      }
+      &:nth-child(2) {
+        transform: scaleY(0);
+      }
+      &:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

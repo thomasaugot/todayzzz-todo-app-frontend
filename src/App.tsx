@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import InputField from "./components/InputField/InputField";
-import TodoList from "./components/TodoList/TodoList";
 import { Todo } from "./model";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { Flip } from "react-awesome-reveal";
 import "./styles/App.scss";
-import DarkModeToggle from "./components/DarkModeToggle/DarkModeToggle";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AppContent from "./components/AppContent/AppContent";
+import { DropResult } from "react-beautiful-dnd";
+import { DarkModeProvider } from "./context/DarkmodeContext";
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
   const [todoList, setTodoList] = useState<Array<Todo>>([]);
   const [CompletedTodos, setCompletedTodos] = useState<Array<Todo>>([]);
-  const [mode, setMode] = useState<"dark" | "light">(
+  const [mode] = useState<"dark" | "light">(
     localStorage.getItem("mode") === "dark" ? "dark" : "light"
   );
 
@@ -21,14 +20,7 @@ const App: React.FC = () => {
     root.classList.toggle("light-mode", mode === "light");
   }, [mode]);
 
-  // set the background color and text color based on the mode
-  useEffect(() => {
-    const root = document.documentElement;
-    root.classList.toggle("dark-mode", mode === "dark");
-    root.classList.toggle("light-mode", mode === "light");
-  }, [mode]);
-
-  //Handles adding todos
+  // Handles adding todos
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (todo) {
@@ -37,7 +29,7 @@ const App: React.FC = () => {
     }
   };
 
-  //Handles moving todos to finished zone
+  // Handles moving todos to the finished zone
   const onDragEnd = (result: DropResult) => {
     const { destination, source } = result;
     if (!destination) {
@@ -50,10 +42,10 @@ const App: React.FC = () => {
     }
 
     let add;
-    let active = todoList;
-    let complete = CompletedTodos;
+    let active = todoList.slice();
+    let complete = CompletedTodos.slice();
 
-    // Send completed back to active tasks
+    // Send completed items back to active tasks
     if (source.droppableId === "TodoList") {
       add = active[source.index];
       active.splice(source.index, 1);
@@ -62,7 +54,7 @@ const App: React.FC = () => {
       complete.splice(source.index, 1);
     }
 
-    // Sent to completed tasks
+    // Move to completed tasks
     if (destination.droppableId === "TodoList") {
       active.splice(destination.index, 0, add);
     } else {
@@ -74,27 +66,27 @@ const App: React.FC = () => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className={`App ${mode === "dark" ? "dark-mode" : "light-mode"}`}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <div className="title-container">
-            <Flip triggerOnce={false}>
-              <h1>Todayzzz</h1>
-            </Flip>
-          </div>
-
-          <DarkModeToggle mode={mode} setMode={setMode} />
-        </div>
-
-        <InputField todo={todo} setTodo={setTodo} handleSubmit={handleSubmit} mode={mode} />
-        <TodoList
-          todoList={todoList}
-          setTodoList={setTodoList}
-          CompletedTodos={CompletedTodos}
-          setCompletedTodos={setCompletedTodos}
-        />
-      </div>
-    </DragDropContext>
+    <Router>
+      <DarkModeProvider>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <AppContent
+                todo={todo}
+                setTodo={setTodo}
+                handleSubmit={handleSubmit}
+                todoList={todoList}
+                setTodoList={setTodoList}
+                completedTodos={CompletedTodos}
+                onDragEnd={onDragEnd}
+                setCompletedTodos={CompletedTodos}
+              />
+            }
+          />
+        </Routes>
+      </DarkModeProvider>
+    </Router>
   );
 };
 

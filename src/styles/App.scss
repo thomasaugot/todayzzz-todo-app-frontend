@@ -19,35 +19,3 @@ body {
 .light-mode {
   @include mode(light);
 }
-
-.App {
-  width: 100vw;
-  height: 100vh;
-  font-family: $app-font;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--bg-gradient);
-
-  h1 {
-    text-transform: uppercase;
-    font-size: 60px;
-    margin: 30px 0 30px 23%;
-    color: var(--text-color);
-    z-index: 1;
-    text-align: center;
-  }
-
-  .title-container {
-    width: 70vw;
-  }
-}
-
-// Add classes to toggle the mode
-.dark-mode {
-  @include mode(dark);
-}
-
-.light-mode {
-  @include mode(light);
-}

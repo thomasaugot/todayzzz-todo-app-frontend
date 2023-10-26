@@ -3,19 +3,19 @@ import { Droppable } from "react-beautiful-dnd";
 import { Todo } from "../../model";
 import TodoElement from "../TodoElement/TodoElement";
 import "./TodoList.scss";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../services/supabaseClient";
 
 interface Props {
   todoList: Todo[];
   setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
   setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-  CompletedTodos: Todo[];
+  completedTodos: Todo[];
 }
 
 const TodoList: React.FC<Props> = ({
   todoList,
   setTodoList,
-  CompletedTodos,
+  completedTodos,
   setCompletedTodos,
 }) => {
   useEffect(() => {
@@ -95,10 +95,10 @@ const TodoList: React.FC<Props> = ({
             className={`todos__column  ${snapshot.isDraggingOver ? "dragcomplete" : "remove"}`}
           >
             <span className="todos__title">Completed Tasks</span>
-            {CompletedTodos?.map((todo, index) => (
+            {completedTodos?.map((todo, index) => (
               <TodoElement
                 index={index}
-                todoList={CompletedTodos}
+                todoList={completedTodos}
                 todo={todo}
                 key={todo.id}
                 setTodos={setCompletedTodos}
