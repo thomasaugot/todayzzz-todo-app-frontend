@@ -1,3 +1,4 @@
+import React from "react";
 import "./InputField.scss";
 
 // I create the interface so that I can define the type of my props on line 9
@@ -10,7 +11,7 @@ interface Props {
 
 const InputField: React.FC<Props> = ({ todo, setTodo, handleSubmit }) => {
   return (
-    <form className="input" onSubmit={handleSubmit}>
+    <form className="input" onSubmit={handleSubmit} id="input-field">
       <input
         type="text"
         value={todo}

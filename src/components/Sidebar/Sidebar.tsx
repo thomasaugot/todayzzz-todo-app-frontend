@@ -11,7 +11,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div className={`sidebar ${isOpen ? "open" : ""}`}>
+    <div className={`sidebar ${isOpen ? "open" : ""}`} id="sidebar">
       <div className="toggle-button" onClick={toggleSidebar}>
         <div className={`bar ${isOpen ? "open" : ""}`}></div>
         <div className={`bar ${isOpen ? "open" : ""}`}></div>
