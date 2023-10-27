@@ -1,7 +1,6 @@
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import Flip from "react-awesome-reveal";
 import Sidebar from "../Sidebar/Sidebar";
-import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import InputField from "../InputField/InputField";
 import TodoList from "../TodoList/TodoList";
 import { Todo } from "../../model";
@@ -41,7 +40,6 @@ const AppContent: React.FC<AppContentProps> = ({
               <h1>Todayzzz</h1>
             </Flip>
           </div>
-          <DarkModeToggle /> {/* Remove mode and setMode props here */}
         </div>
 
         <InputField todo={todo} setTodo={setTodo} handleSubmit={handleSubmit} mode={mode} />

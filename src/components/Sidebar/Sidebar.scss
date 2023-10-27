@@ -7,7 +7,7 @@
   width: 250px;
   height: 100%;
   background-color: rgba(57, 63, 77, 1);
-  color: $text-color;
+  color: var(--text-color);
   transition: left 0.3s;
   z-index: 1000;
 
@@ -15,23 +15,23 @@
     left: 0;
   }
 
-  ul {
-    list-style: none;
-    padding: 50px 30px;
+  button {
+    font-family: $app-font;
+    font-size: 22px;
+    text-decoration: none;
+    color: $text-color;
+    display: block;
+    background-color: transparent;
+    border: none;
+    padding: 5px 20px;
+    margin: 30px;
+    cursor: pointer;
 
-    li {
-      padding: 10px 0;
-      a {
-        text-decoration: none;
-        color: $text-color;
-        display: block;
-        padding: 5px 15px;
-        transition: background-color 0.3s;
-
-        &:hover {
-          background-color: #555;
-        }
-      }
+    &:hover {
+      background-color: #555;
+      border-radius: 10px;
+      padding: 5px 20px;
+      cursor: pointer;
     }
   }
 
@@ -81,4 +81,8 @@
       }
     }
   }
+}
+
+.close-icon {
+  color: var(--text-color);
 }

@@ -1,47 +1,51 @@
 @import "../../styles/variables.scss"; /* Make sure variables are correctly imported */
 
-.toggle {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-  border-radius: 24px;
-  border: solid rgba(57, 63, 77, 1) 2px;
-  background-color: $text-color;
-  transition: background-color 0.4s;
-  cursor: pointer;
-  margin: 0 30px;
-}
+.dark-mode-toggle {
+  padding: 15px 0px;
 
-.toggle-container {
-  width: 18vw;
-}
+  .toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    border-radius: 24px;
+    border: solid rgba(57, 63, 77, 1) 2px;
+    background-color: $text-color;
+    transition: background-color 0.4s;
+    cursor: pointer;
+    margin: 0 30px;
+  }
 
-.toggle input[type="checkbox"] {
-  display: none;
-}
+  .toggle-container {
+    width: 18vw;
+  }
 
-.toggle .slider {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 2px;
-  bottom: 2px;
-  border-radius: 50%;
-  background-color: rgba(57, 63, 77, 1);
-  transition: background-color 0.4s, transform 0.4s;
-}
+  .toggle input[type="checkbox"] {
+    display: none;
+  }
 
-.toggle input[type="checkbox"]:checked + .slider {
-  transform: translateX(26px);
-  background-color: rgba(57, 63, 77, 1);
-}
+  .toggle .slider {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    border-radius: 50%;
+    background-color: rgba(57, 63, 77, 1);
+    transition: background-color 0.4s, transform 0.4s;
+  }
 
-.toggle .icon {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  color: $text-color;
-  top: 10px;
-  left: 10px;
+  .toggle input[type="checkbox"]:checked + .slider {
+    transform: translateX(26px);
+    background-color: rgba(57, 63, 77, 1);
+  }
+
+  .toggle .icon {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: $text-color;
+    top: 10px;
+    left: 10px;
+  }
 }

@@ -1,0 +1,26 @@
+@import "../../styles/variables.scss";
+
+.LoginForm {
+  background: var(--bg-gradient);
+  margin: 0;
+  padding: 30px;
+  border-radius: 20px;
+  border: 2px solid var(--text-color);
+  color: var(--text-color);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    height: 50vh;
+    margin: 0 auto;
+  }
+
+  label {
+    color: wheat;
+  }
+
+  input {
+    margin-bottom: 10px;
+  }
+}
