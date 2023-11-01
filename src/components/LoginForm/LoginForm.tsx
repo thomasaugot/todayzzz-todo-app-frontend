@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./LoginForm.scss";
 import { useDarkMode } from "../../context/DarkmodeContext";
+import { Link } from "react-router-dom";
 
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -14,7 +15,7 @@ const LoginForm: React.FC = () => {
   return (
     <div className={`LoginForm ${mode === "dark" ? "dark-mode" : "light-mode"}`}>
       <h2>Login</h2>
-      <form>
+      <form onSubmit={handleLogin}>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -31,11 +32,11 @@ const LoginForm: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
+        <button type="button">Login</button>
       </form>
-      <p>Not a member yet? Sign up!</p>
+      <Link to={"/signup"} className="signup-link">
+        Not a member yet? Sign up!
+      </Link>
     </div>
   );
 };
