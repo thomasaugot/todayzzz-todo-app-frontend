@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div className="dark-mode-toggle">
+    <div className="dark-mode-toggle" id="dark-mode-toggle">
       <label className="toggle">
         <input type="checkbox" onClick={toggleMode} />
         <span className="slider round">
