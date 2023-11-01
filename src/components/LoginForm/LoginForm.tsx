@@ -15,7 +15,7 @@ const LoginForm: React.FC = () => {
     <div className={`LoginForm ${mode === "dark" ? "dark-mode" : "light-mode"}`}>
       <h2>Login</h2>
       <form>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="username">Username</label>
         <input
           type="text"
           id="username"
@@ -23,7 +23,7 @@ const LoginForm: React.FC = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
 
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
@@ -35,6 +35,7 @@ const LoginForm: React.FC = () => {
           Login
         </button>
       </form>
+      <p>Not a member yet? Sign up!</p>
     </div>
   );
 };

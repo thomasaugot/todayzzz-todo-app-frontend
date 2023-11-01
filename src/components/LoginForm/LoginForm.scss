@@ -8,12 +8,17 @@
   border: 2px solid var(--text-color);
   color: var(--text-color);
 
+  h2 {
+    text-align: center;
+  }
+
   form {
     display: flex;
     flex-direction: column;
     width: 30vw;
     height: 50vh;
     margin: 0 auto;
+    gap: 0.8em;
   }
 
   label {
@@ -21,6 +26,40 @@
   }
 
   input {
-    margin-bottom: 10px;
+    background-color: #393f4d;
+    font-family: $app-font;
+    width: 90%;
+    padding: 13px;
+    border: 2px solid $text-color;
+    border-radius: 50px;
+    outline: none;
+    font-size: 18px;
+    color: $text-color;
+    transition: 0.2s;
+    box-shadow: inset 0 0 5px black;
+  }
+
+  button {
+    cursor: pointer;
+    width: 40%;
+    height: 40px;
+    margin: 12px 7px;
+    border-radius: 50px;
+    border: none;
+    font-size: 18px;
+    background-color: $text-color;
+    font-family: $app-font;
+    font-weight: 800;
+    transition: 0.2s all;
+    box-shadow: 0 0 10px black;
+    margin-inline: auto;
+    &:hover {
+      transform: scale(0.8);
+      box-shadow: 0 0 5px black;
+    }
+  }
+
+  p {
+    text-align: center;
   }
 }

@@ -5,14 +5,14 @@ import { DarkModeProvider } from "../../context/DarkmodeContext";
 export {};
 
 describe("DarkModeToggle component", () => {
-  it('renders the DarkModeToggle component with the "light" mode initially', () => {
+  it('renders the DarkModeToggle component with the "dark" mode initially', () => {
     render(
       <DarkModeProvider>
         <DarkModeToggle />
       </DarkModeProvider>
     );
 
-    // Assert that the component is rendered with the "light" mode initially
+    // Assert that the component is rendered with the "dark" mode initially
     expect(screen.getByTestId("dark-mode-toggle")).toBeInTheDocument();
     expect(screen.getByTestId("dark-mode-toggle-input")).toHaveAttribute("checked");
   });
