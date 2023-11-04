@@ -7,7 +7,7 @@
   margin-top: 15px;
   padding: 3px;
   width: 100%;
-  background-color: $text-color;
+  background-color: var(--text-color);
   align-items: center;
   transition: 0.2s;
   &:hover {
@@ -21,12 +21,12 @@
   padding: 5px;
   border: none;
   font-size: 20px;
-  color: #333;
+  color: var(--variant-bg);
 }
 
 .iconTodos {
   margin-left: 10px;
   font-size: 20px;
   cursor: pointer;
-  color: #333;
+  color: var(--variant-bg);
 }

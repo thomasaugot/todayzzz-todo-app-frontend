@@ -7,15 +7,15 @@
   align-items: center;
 }
 .input__box {
-  background-color: #393f4d;
+  background-color: var(--variant-bg);
   font-family: $app-font;
   width: 100%;
   padding: 13px;
-  border: 2px solid $text-color;
+  border: 2px solid var(--text-color);
   border-radius: 50px;
   outline: none;
   font-size: 18px;
-  color: $text-color;
+  color: var(--text-color);
   transition: 0.2s;
   box-shadow: inset 0 0 5px black;
 
@@ -33,14 +33,15 @@
     font-size: 22px;
     border-radius: 50px;
     pointer-events: none;
-    color: $text-color;
+    color: var(--text-color);
     text-transform: uppercase;
     transition: 0.5s linear;
-    background-color: #393f4d;
+    background-color: var(--variant-bg);
   }
 }
 
 .input__submit {
+  cursor: pointer;
   position: absolute;
   width: 40px;
   height: 40px;

@@ -14,12 +14,12 @@
   align-items: flex-start;
   padding: 15px;
   margin: 15px;
-  background-color: rgba(57, 63, 77, 1);
+  background-color: var(--variant-bg);
   border-radius: 15px;
   width: 45%;
 }
 
 .todos__title {
   font-size: 30px;
-  color: $text-color;
+  color: var(--text-color);
 }
