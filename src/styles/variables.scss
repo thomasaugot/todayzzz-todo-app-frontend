@@ -8,10 +8,12 @@ $modes: (
   light: (
     text-color: #333,
     bg-gradient: linear-gradient(to bottom, #fff, #f5f5f5),
+    variant-bg: #feda6a,
   ),
   dark: (
     text-color: #feda6a,
     bg-gradient: linear-gradient(180deg, rgba(29, 30, 34, 1) 0%, rgba(57, 63, 77, 1) 65%),
+    variant-bg: rgba(57, 63, 77, 1),
   ),
 );
 

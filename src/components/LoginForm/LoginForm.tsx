@@ -22,6 +22,7 @@ const LoginForm: React.FC = () => {
           id="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="input-box"
         />
 
         <label htmlFor="password">Password</label>
@@ -30,6 +31,7 @@ const LoginForm: React.FC = () => {
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="input-box"
         />
 
         <button type="button">Login</button>
