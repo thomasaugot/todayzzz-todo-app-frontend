@@ -26,7 +26,7 @@
     }
 
     .input-box {
-      background-color: var(--text-color) !important;
+      background-color: $text-color !important;
       font-family: $app-font;
       width: 90%;
       padding: 13px;
@@ -34,7 +34,7 @@
       border-radius: 50px;
       outline: none;
       font-size: 18px;
-      color: var(--text-color);
+      color: $purple-color;
       transition: 0.2s;
       box-shadow: inset 0 0 5px black;
     }
@@ -51,7 +51,7 @@
       font-family: $app-font;
       font-weight: 800;
       transition: 0.2s all;
-      color: rgba(57, 63, 77, 1);
+      color: $purple-color;
       margin-inline: auto;
       &:hover {
         transform: scale(0.8);
