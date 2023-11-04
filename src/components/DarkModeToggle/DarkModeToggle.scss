@@ -9,8 +9,8 @@
     width: 50px;
     height: 24px;
     border-radius: 24px;
-    border: solid rgba(57, 63, 77, 1) 2px;
-    background-color: $text-color;
+    border: solid var(--variant-bg) 2px;
+    background-color: var(--text-color);
     transition: background-color 0.4s;
     cursor: pointer;
     margin: 0 30px;
@@ -32,19 +32,19 @@
     left: 2px;
     bottom: 2px;
     border-radius: 50%;
-    background-color: rgba(57, 63, 77, 1);
-    transition: background-color 0.4s, transform 0.4s;
+    background-color: var(--variant-bg);
+    transition: background-color 0.6s, transform 0.6s;
   }
 
   .toggle input[type="checkbox"]:checked + .slider {
     transform: translateX(26px);
-    background-color: rgba(57, 63, 77, 1);
+    background-color: var(--variant-bg);
   }
 
   .toggle .icon {
     position: absolute;
     transform: translate(-50%, -50%);
-    color: $text-color;
+    color: var(--text-color);
     top: 10px;
     left: 10px;
   }
