@@ -9,11 +9,15 @@ $modes: (
     text-color: rgba(57, 63, 77, 1),
     bg-gradient: rgb(248, 248, 255),
     variant-bg: #feda6a,
+    form-bg: rgb(248, 248, 255),
+    close-icon: rgba(57, 63, 77, 1),
   ),
   dark: (
     text-color: #feda6a,
     bg-gradient: linear-gradient(180deg, rgba(29, 30, 34, 1) 0%, rgba(57, 63, 77, 1) 65%),
     variant-bg: rgba(57, 63, 77, 1),
+    form-bg: rgba(57, 63, 77, 1),
+    close-icon: #feda6a,
   ),
 );
 

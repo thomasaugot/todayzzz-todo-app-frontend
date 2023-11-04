@@ -5,7 +5,7 @@
   border: 1px solid $text-color;
 
   .LoginForm {
-    background-color: var(--bg-gradient);
+    background-color: var(--form-bg) !important;
     margin: 0;
     padding: 30px;
     border-radius: 20px;
@@ -51,7 +51,7 @@
       font-family: $app-font;
       font-weight: 800;
       transition: 0.2s all;
-      box-shadow: 0 0 10px black;
+      color: rgba(57, 63, 77, 1);
       margin-inline: auto;
       &:hover {
         transform: scale(0.8);
@@ -65,5 +65,10 @@
       color: var(--text-color);
       text-underline-offset: 2px;
     }
+  }
+
+  // .close-icon,
+  .react-responsive-modal-closeButton {
+    color: var(--close-icon) !important;
   }
 }

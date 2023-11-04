@@ -22,7 +22,7 @@ const Sidebar: React.FC = () => {
 
   const closeIcon = (
     <IconContext.Provider value={{ size: "35" }}>
-      <AiOutlineClose className="close-icon" />
+      <AiOutlineClose />
     </IconContext.Provider>
   );
 
