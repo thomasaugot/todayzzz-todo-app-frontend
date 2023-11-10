@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AppContent from "./components/AppContent/AppContent";
 import { DropResult } from "react-beautiful-dnd";
 import { DarkModeProvider } from "./context/DarkmodeContext";
-// import { TodosProvider } from "./context/TodosContext";
+import { TodosProvider } from "./context/TodosContext";
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
@@ -69,25 +69,25 @@ const App: React.FC = () => {
   return (
     <Router>
       <DarkModeProvider>
-        {/* <TodosProvider> */}
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <AppContent
-                todo={todo}
-                setTodo={setTodo}
-                handleSubmit={handleSubmit}
-                todoList={todoList}
-                setTodoList={setTodoList}
-                completedTodos={CompletedTodos}
-                onDragEnd={onDragEnd}
-                setCompletedTodos={CompletedTodos}
-              />
-            }
-          />
-        </Routes>
-        {/* </TodosProvider> */}
+        <TodosProvider>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <AppContent
+                  todo={todo}
+                  setTodo={setTodo}
+                  handleSubmit={handleSubmit}
+                  todoList={todoList}
+                  setTodoList={setTodoList}
+                  completedTodos={CompletedTodos}
+                  onDragEnd={onDragEnd}
+                  setCompletedTodos={CompletedTodos}
+                />
+              }
+            />
+          </Routes>
+        </TodosProvider>
       </DarkModeProvider>
     </Router>
   );
