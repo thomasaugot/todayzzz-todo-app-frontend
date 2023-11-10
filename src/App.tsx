@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AppContent from "./components/AppContent/AppContent";
 import { DropResult } from "react-beautiful-dnd";
 import { DarkModeProvider } from "./context/DarkmodeContext";
+// import { TodosProvider } from "./context/TodosContext";
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
@@ -68,6 +69,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <DarkModeProvider>
+        {/* <TodosProvider> */}
         <Routes>
           <Route
             path="/"
@@ -85,6 +87,7 @@ const App: React.FC = () => {
             }
           />
         </Routes>
+        {/* </TodosProvider> */}
       </DarkModeProvider>
     </Router>
   );

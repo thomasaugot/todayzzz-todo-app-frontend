@@ -43,7 +43,10 @@ const Sidebar: React.FC = () => {
       </div>
       <div>
         <DarkModeToggle />
-        <button onClick={onOpenLoginModal}>Login</button>
+        <button onClick={onOpenLoginModal}>Login / Signup</button>
+        {/* {isLoggedin && collections.map((collectionItem) = > {
+         <button onClick={openCollection}>{collectionItem}</button>
+        })} */}
       </div>
       <Modal
         open={loginModalIsOpen}
