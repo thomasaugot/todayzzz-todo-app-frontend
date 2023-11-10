@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Sidebar.scss";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import { Modal } from "react-responsive-modal";
-import LoginForm from "../LoginForm/LoginForm";
+import LoginForm from "../LoginSingup/LoginSignup";
 import "react-responsive-modal/styles.css";
 import { AiOutlineClose } from "react-icons/ai";
 import { IconContext } from "react-icons";

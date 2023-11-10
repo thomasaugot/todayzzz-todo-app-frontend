@@ -1,9 +1,9 @@
 import { useState } from "react";
-import "./LoginForm.scss";
+import "../LoginSingup/LoginForm.scss";
 import { useDarkMode } from "../../context/DarkmodeContext";
 import { Link } from "react-router-dom";
 
-const LoginForm: React.FC = () => {
+const SignupForm: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { mode } = useDarkMode();
@@ -43,4 +43,4 @@ const LoginForm: React.FC = () => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;
