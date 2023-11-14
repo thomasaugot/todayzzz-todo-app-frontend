@@ -6,12 +6,14 @@ import LoginForm from "../LoginSingup/LoginSignup";
 import "react-responsive-modal/styles.css";
 import { AiOutlineClose } from "react-icons/ai";
 import { IconContext } from "react-icons";
+import { useTodosContext } from "../../context/TodosContext";
+import { Collection } from "../../context/TodosContext"; // Import Collection type
 import "../../styles/variables.scss";
 
 const Sidebar: React.FC = () => {
+  const { dispatch: todosDispatch, state } = useTodosContext();
   const [isOpen, setIsOpen] = useState(false);
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -34,6 +36,11 @@ const Sidebar: React.FC = () => {
     },
   };
 
+  const openCollection = (collection: Collection) => {
+    todosDispatch({ type: "SET_SELECTED_COLLECTION", payload: collection });
+    toggleSidebar(); // Close the sidebar when a collection is selected
+  };
+
   return (
     <div className={`sidebar ${isOpen ? "open" : ""}`} id="sidebar">
       <div className="toggle-button" onClick={toggleSidebar}>
@@ -44,9 +51,12 @@ const Sidebar: React.FC = () => {
       <div>
         <DarkModeToggle />
         <button onClick={onOpenLoginModal}>Login / Signup</button>
-        {/* {isLoggedin && collections.map((collectionItem) = > {
-         <button onClick={openCollection}>{collectionItem}</button>
-        })} */}
+        {state.user &&
+          state.collections.map((collection) => (
+            <button key={collection.collection_id} onClick={() => openCollection(collection)}>
+              {collection.name}
+            </button>
+          ))}
       </div>
       <Modal
         open={loginModalIsOpen}

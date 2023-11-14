@@ -82,7 +82,7 @@ const App: React.FC = () => {
                   setTodoList={setTodoList}
                   completedTodos={CompletedTodos}
                   onDragEnd={onDragEnd}
-                  setCompletedTodos={CompletedTodos}
+                  setCompletedTodos={setCompletedTodos}
                 />
               }
             />

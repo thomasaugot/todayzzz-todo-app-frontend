@@ -3,18 +3,18 @@ import Flip from "react-awesome-reveal";
 import Sidebar from "../Sidebar/Sidebar";
 import InputField from "../InputField/InputField";
 import TodoList from "../TodoList/TodoList";
-import { Todo } from "../../model";
 import { useDarkMode } from "../../context/DarkmodeContext";
 import "./AppContent.scss";
+import { Todo } from "../../context/TodosContext";
 
 interface AppContentProps {
   todo: string;
   setTodo: any;
   handleSubmit: (e: React.FormEvent) => void;
   todoList: Todo[];
-  setTodoList: any;
+  setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
   completedTodos: Todo[];
-  setCompletedTodos: any;
+  setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   onDragEnd: (result: DropResult) => void;
 }
 

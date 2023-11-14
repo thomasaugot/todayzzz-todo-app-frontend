@@ -1,10 +1,10 @@
-import { Todo } from "../../model";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import "./TodoElement.scss";
 import { useRef } from "react";
 import React, { useEffect, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import { Todo } from "../../context/TodosContext";
 
 const TodoElement: React.FC<{
   index: number;

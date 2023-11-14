@@ -1,67 +1,20 @@
 import React, { useEffect } from "react";
 import { Droppable } from "react-beautiful-dnd";
-import { Todo } from "../../model";
 import TodoElement from "../TodoElement/TodoElement";
 import "./TodoList.scss";
-import { supabase } from "../../services/supabaseClient";
+import { Todo, useTodosContext } from "../../context/TodosContext";
 
 interface Props {
-  todoList: Todo[];
-  setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
-  setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-  completedTodos: Todo[];
+  setTodoList: any;
+  setCompletedTodos: any;
 }
 
-const TodoList: React.FC<Props> = ({
-  todoList,
-  setTodoList,
-  completedTodos,
-  setCompletedTodos,
-}) => {
+const TodoList: React.FC<Props> = ({ setTodoList, setCompletedTodos }) => {
+  const { state } = useTodosContext(); // Access the state from the context
+
   useEffect(() => {
-    const fetchTodos = async () => {
-      const { data: todos, error } = await supabase.from("todos").select("id, created_at, content");
-
-      if (todos) {
-        const formattedTodos = todos.map((todo) => ({
-          ...todo,
-          isDone: false, // Add the isDone property
-        }));
-        setTodoList(formattedTodos);
-      }
-      if (error) {
-        console.log("Error fetching todos:", error);
-      }
-    };
-
-    fetchTodos();
-
-    const signIn = async () => {
-      let { data, error } = await supabase.auth.signInWithPassword({
-        email: "thomas.augot@hotmail.fr",
-        password: "wCTuqtkbYbJnHrmPDUGH",
-      });
-      if (error) {
-        console.log("Error signing in:", error);
-      } else {
-        console.log("Signed in successfully:", data);
-        fetchTodos(); // Call the fetchTodos function after signing in
-      }
-    };
-
-    signIn();
-
-    const todos = supabase
-      .channel("custom-all-channel")
-      .on("postgres_changes", { event: "*", schema: "public", table: "todos" }, (payload) => {
-        console.log("Change received!", payload);
-      })
-      .subscribe();
-
-    // Cleanup function
-    return () => {
-      todos.unsubscribe(); // Unsubscribe from the channel
-    };
+    // just for cleanup
+    return () => {};
   }, [setTodoList]);
 
   return (
@@ -74,10 +27,10 @@ const TodoList: React.FC<Props> = ({
             {...provided.droppableProps}
           >
             <span className="todos__title">Active Tasks</span>
-            {todoList?.map((todo, index) => (
+            {state.todos?.map((todo, index) => (
               <TodoElement
                 index={index}
-                todoList={todoList}
+                todoList={state.todos}
                 todo={todo}
                 key={todo.id}
                 setTodos={setTodoList}
@@ -95,10 +48,10 @@ const TodoList: React.FC<Props> = ({
             className={`todos__column  ${snapshot.isDraggingOver ? "dragcomplete" : "remove"}`}
           >
             <span className="todos__title">Completed Tasks</span>
-            {completedTodos?.map((todo, index) => (
+            {state.completedTodos?.map((todo: Todo, index: number) => (
               <TodoElement
                 index={index}
-                todoList={completedTodos}
+                todoList={state.completedTodos}
                 todo={todo}
                 key={todo.id}
                 setTodos={setCompletedTodos}
