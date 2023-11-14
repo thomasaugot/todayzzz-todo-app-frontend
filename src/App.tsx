@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AppContent from "./components/AppContent/AppContent";
 import { DropResult } from "react-beautiful-dnd";
 import { DarkModeProvider } from "./context/DarkmodeContext";
-import { Todo, TodosProvider, useTodosContext } from "./context/TodosContext";
+import { Todo, useTodosContext } from "./context/TodosContext";
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState("");
@@ -29,7 +29,7 @@ const App: React.FC = () => {
       const newTodo: Todo = {
         todo_item_id: Date.now(),
         user_id: user.user_id,
-        collection_id: selectedCollection,
+        collection_id: selectedCollection.collection_id,
         id: Date.now(),
         content: todo,
         isDone: false,
@@ -79,25 +79,23 @@ const App: React.FC = () => {
   return (
     <Router>
       <DarkModeProvider>
-        <TodosProvider>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <AppContent
-                  todo={todo}
-                  setTodo={setTodo}
-                  handleSubmit={handleSubmit}
-                  todoList={todoList}
-                  setTodoList={setTodoList}
-                  completedTodos={CompletedTodos}
-                  onDragEnd={onDragEnd}
-                  setCompletedTodos={setCompletedTodos}
-                />
-              }
-            />
-          </Routes>
-        </TodosProvider>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <AppContent
+                todo={todo}
+                setTodo={setTodo}
+                handleSubmit={handleSubmit}
+                todoList={todoList}
+                setTodoList={setTodoList}
+                completedTodos={CompletedTodos}
+                onDragEnd={onDragEnd}
+                setCompletedTodos={setCompletedTodos}
+              />
+            }
+          />
+        </Routes>
       </DarkModeProvider>
     </Router>
   );
