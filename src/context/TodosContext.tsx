@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useContext, useEffect, ReactNode } from "react";
 import axios from "axios";
 
-interface User {
+export interface User {
   user_id: number;
   firstname: string;
   lastname: string;
@@ -9,14 +9,14 @@ interface User {
   todo_items: [];
 }
 
-interface Collection {
+export interface Collection {
   collection_id: number;
   name: string;
   todo_items: [];
   user_id: number;
 }
 
-interface TodoItem {
+export interface TodoItem {
   todo_item_id: number;
   content: string;
   user_id: number;
@@ -24,12 +24,14 @@ interface TodoItem {
   isDone: boolean;
 }
 
-interface TodosState {
+// overall state of the app
+export interface TodosState {
   user: User | null;
   collections: Collection[];
   todos: TodoItem[];
 }
 
+//Describes the possible actions that can be dispatched to the reducer
 type Action =
   | { type: "SET_USER"; payload: User }
   | { type: "FETCH_COLLECTIONS"; payload: Collection[] }
@@ -42,6 +44,7 @@ interface TodosContextProps {
 
 const TodosContext = createContext<TodosContextProps | undefined>(undefined);
 
+// creating a custom hook to access the context within components
 const useTodosContext = (): TodosContextProps => {
   const context = useContext(TodosContext);
   if (!context) {
@@ -54,9 +57,14 @@ interface TodosProviderProps {
   children: ReactNode;
 }
 
+const todosReducer = (state: TodosState, action: Action): any => {};
+const initialState = (state: TodosState, action: Action): any => {};
+
+// provider component that wraps the app, managing the global state.
 const TodosProvider: React.FC<TodosProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(todosReducer, initialState);
 
+  // fetch data from the server when the component mounts.
   useEffect(() => {
     const fetchData = async () => {
       try {
