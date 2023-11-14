@@ -53,7 +53,7 @@ const TodoList: React.FC<Props> = ({ setTodoList, setCompletedTodos }) => {
             {state.completedTodos?.map((todo: Todo, index: number) => (
               <TodoElement
                 index={index}
-                todoList={state.completedTodos}
+                todoList={state.completedTodos as any}
                 todo={todo}
                 key={todo.id}
                 setTodos={setCompletedTodos}

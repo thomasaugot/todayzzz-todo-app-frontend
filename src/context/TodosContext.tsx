@@ -5,14 +5,14 @@ export interface User {
   user_id: number;
   firstname: string;
   lastname: string;
-  collections: [];
-  todo_items: [string];
+  collections: Collection[];
+  todo_items: Todo[];
 }
 
 export interface Collection {
   collection_id: number;
   name: string;
-  todo_items: [string];
+  todo_items: Todo[];
   user_id: number;
 }
 
@@ -27,20 +27,20 @@ export interface Todo {
 
 // overall state of the app
 export interface TodosState {
-  completedTodos: any;
   user: User | null;
   collections: Collection[];
   todos: Todo[];
-  selectedCollection: number;
+  completedTodos: Todo[] | undefined;
+  selectedCollection: Collection | null;
 }
 
-//Describes the possible actions that can be dispatched to the reducer
+// Describes the possible actions that can be dispatched to the reducer
 type Action =
   | { type: "SET_USER"; payload: User }
   | { type: "FETCH_COLLECTIONS"; payload: Collection[] }
   | { type: "FETCH_TODOS"; payload: Todo[] }
-  | { type: "SET_SELECTED_COLLECTION"; payload: Collection }
-  | { type: "SET_SELECTED_COLLECTION"; payload: null };
+  | { type: "SET_SELECTED_COLLECTION"; payload: Collection | null }
+  | { type: "FETCH_COMPLETED_TODOS"; payload: Todo[] };
 
 interface TodosContextProps {
   state: TodosState;
@@ -79,6 +79,16 @@ const todosReducer = (state: TodosState, action: Action): TodosState => {
         ...state,
         todos: action.payload,
       };
+    case "SET_SELECTED_COLLECTION":
+      return {
+        ...state,
+        selectedCollection: action.payload,
+      };
+    case "FETCH_COMPLETED_TODOS":
+      return {
+        ...state,
+        completedTodos: action.payload,
+      };
     default:
       return state;
   }
@@ -89,7 +99,7 @@ const initialState: TodosState = {
   collections: [],
   todos: [],
   completedTodos: undefined,
-  selectedCollection: 0,
+  selectedCollection: null,
 };
 
 // provider component that wraps the app, managing the global state.
@@ -108,6 +118,9 @@ const TodosProvider: React.FC<TodosProviderProps> = ({ children }) => {
 
         const todosResponse = await axios.get<Todo[]>("/api/todos");
         dispatch({ type: "FETCH_TODOS", payload: todosResponse.data });
+
+        // const completedTodosResponse = await axios.get<Todo[]>("/api/completedTodos");
+        // dispatch({ type: "FETCH_COMPLETED_TODOS", payload: completedTodosResponse.data });
       } catch (error) {
         console.error("Error fetching data:", error);
       }
