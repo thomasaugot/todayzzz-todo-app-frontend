@@ -19,10 +19,10 @@ const InputField: React.FC<Props> = ({ todo, setTodo, handleSubmit }) => {
         type: "ADD_TODO",
         payload: {
           id: Date.now(),
-          todo_item_id: Date.now(), // Add this line
+          todo_item_id: Date.now(),
           content: todo,
-          user_id: state.user?.user_id || 0, // You might want to adjust this based on your actual user structure
-          collection_id: state.selectedCollection?.collection_id || 0, // Adjust this based on your actual collection structure
+          user_id: state.user?.user_id || 0,
+          collection_id: state.selectedCollection?.collection_id || 0,
           isDone: false,
         },
       });
