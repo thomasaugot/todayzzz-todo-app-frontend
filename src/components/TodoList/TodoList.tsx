@@ -5,6 +5,8 @@ import "./TodoList.scss";
 import { Todo, useTodosContext } from "../../context/TodosContext";
 
 interface Props {
+  todoList: Todo[];
+  completedTodos: Todo[];
   setTodoList: any;
   setCompletedTodos: any;
 }

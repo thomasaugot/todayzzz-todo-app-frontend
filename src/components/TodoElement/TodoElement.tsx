@@ -9,8 +9,8 @@ import { Todo } from "../../context/TodosContext";
 const TodoElement: React.FC<{
   index: number;
   todo: Todo;
-  todoList: Array<Todo>;
-  setTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  todoList: Todo[];
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }> = ({ index, todo, todoList, setTodos }) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.content);

@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Todo } from "./model";
 import "./styles/App.scss";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AppContent from "./components/AppContent/AppContent";
 import { DropResult } from "react-beautiful-dnd";
 import { DarkModeProvider } from "./context/DarkmodeContext";
-import { TodosProvider } from "./context/TodosContext";
+import { Todo, TodosProvider, useTodosContext } from "./context/TodosContext";
 
 const App: React.FC = () => {
-  const [todo, setTodo] = useState<string>("");
-  const [todoList, setTodoList] = useState<Array<Todo>>([]);
-  const [CompletedTodos, setCompletedTodos] = useState<Array<Todo>>([]);
+  const [todo, setTodo] = useState("");
+  const [todoList, setTodoList] = useState<Todo[]>([]);
+  const [CompletedTodos, setCompletedTodos] = useState<Todo[]>([]);
   const [mode] = useState<"dark" | "light">(
     localStorage.getItem("mode") === "dark" ? "dark" : "light"
   );
+  const { state } = useTodosContext(); // Use useTodosContext hook to access the context state
+  const { user, selectedCollection } = state;
 
   useEffect(() => {
     const root = document.documentElement;
@@ -24,8 +25,17 @@ const App: React.FC = () => {
   // Handles adding todos
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (todo) {
-      setTodoList([...todoList, { id: Date.now(), content: todo, isDone: false }]);
+    if (todo && user && selectedCollection !== null) {
+      const newTodo: Todo = {
+        todo_item_id: Date.now(),
+        user_id: user.user_id,
+        collection_id: selectedCollection,
+        id: Date.now(),
+        content: todo,
+        isDone: false,
+      };
+
+      setTodoList([...todoList, newTodo]);
       setTodo("");
     }
   };

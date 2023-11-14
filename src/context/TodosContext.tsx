@@ -31,6 +31,7 @@ export interface TodosState {
   user: User | null;
   collections: Collection[];
   todos: Todo[];
+  selectedCollection: number;
 }
 
 //Describes the possible actions that can be dispatched to the reducer
@@ -88,6 +89,7 @@ const initialState: TodosState = {
   collections: [],
   todos: [],
   completedTodos: undefined,
+  selectedCollection: 0,
 };
 
 // provider component that wraps the app, managing the global state.
