@@ -32,6 +32,7 @@ const TodoElement: React.FC<{
 
   const handleDone = (id: number) => {
     setTodos(todoList.map((todo) => (todo.id === id ? { ...todo, isDone: !todo.isDone } : todo)));
+    console.log("done!");
   };
 
   return (
