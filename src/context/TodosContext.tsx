@@ -34,13 +34,23 @@ export interface TodosState {
   selectedCollection: Collection | null;
 }
 
+type AddTodoPayload = {
+  id: number;
+  content: string;
+  isDone: boolean;
+  todo_item_id: number;
+  user_id: number;
+  collection_id: number;
+};
+
 // Describes the possible actions that can be dispatched to the reducer
 type Action =
   | { type: "SET_USER"; payload: User }
   | { type: "FETCH_COLLECTIONS"; payload: Collection[] }
   | { type: "FETCH_TODOS"; payload: Todo[] }
   | { type: "SET_SELECTED_COLLECTION"; payload: Collection | null }
-  | { type: "FETCH_COMPLETED_TODOS"; payload: Todo[] };
+  | { type: "FETCH_COMPLETED_TODOS"; payload: Todo[] }
+  | { type: "ADD_TODO"; payload: AddTodoPayload };
 
 interface TodosContextProps {
   state: TodosState;
@@ -88,6 +98,12 @@ const todosReducer = (state: TodosState, action: Action): TodosState => {
       return {
         ...state,
         completedTodos: action.payload,
+      };
+    case "ADD_TODO":
+      const newTodo: AddTodoPayload = action.payload;
+      return {
+        ...state,
+        todos: [...state.todos, newTodo],
       };
     default:
       return state;

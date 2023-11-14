@@ -1,5 +1,6 @@
 import React from "react";
 import "./InputField.scss";
+import { useTodosContext } from "../../context/TodosContext";
 
 interface Props {
   todo: string;
@@ -9,9 +10,23 @@ interface Props {
 }
 
 const InputField: React.FC<Props> = ({ todo, setTodo, handleSubmit }) => {
+  const { state, dispatch } = useTodosContext();
+
   const handleLocalSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    handleSubmit(e);
+    if (todo.trim()) {
+      dispatch({
+        type: "ADD_TODO",
+        payload: {
+          id: Date.now(),
+          todo_item_id: Date.now(), // Add this line
+          content: todo,
+          user_id: state.user?.user_id || 0, // You might want to adjust this based on your actual user structure
+          collection_id: state.selectedCollection?.collection_id || 0, // Adjust this based on your actual collection structure
+          isDone: false,
+        },
+      });
+    }
 
     setTodo("");
   };
