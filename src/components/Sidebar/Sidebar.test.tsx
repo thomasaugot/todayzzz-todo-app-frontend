@@ -1,10 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Sidebar from "./Sidebar";
 
-export {};
-
-// testing the rendering
-
 describe("Sidebar component", () => {
   it("renders the Sidebar component with initial closed state", () => {
     render(<Sidebar />);

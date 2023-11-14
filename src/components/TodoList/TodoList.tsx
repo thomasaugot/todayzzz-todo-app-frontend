@@ -35,7 +35,7 @@ const TodoList: React.FC<Props> = ({ setTodoList, setCompletedTodos }) => {
                 todoList={state.todos}
                 todo={todo}
                 key={todo.id}
-                setTodos={setTodoList}
+                setTodoList={setTodoList}
               />
             ))}
             {provided.placeholder}
@@ -56,7 +56,7 @@ const TodoList: React.FC<Props> = ({ setTodoList, setCompletedTodos }) => {
                 todoList={state.completedTodos as any}
                 todo={todo}
                 key={todo.id}
-                setTodos={setCompletedTodos}
+                setTodoList={setCompletedTodos}
               />
             ))}
             {provided.placeholder}

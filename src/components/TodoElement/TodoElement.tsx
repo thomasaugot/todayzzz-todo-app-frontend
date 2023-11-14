@@ -1,37 +1,39 @@
+import React, { useRef, useEffect, useState } from "react";
+import { Draggable } from "react-beautiful-dnd";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import "./TodoElement.scss";
-import { useRef } from "react";
-import React, { useEffect, useState } from "react";
-import { Draggable } from "react-beautiful-dnd";
 import { Todo } from "../../context/TodosContext";
 
 const TodoElement: React.FC<{
   index: number;
   todo: Todo;
   todoList: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-}> = ({ index, todo, todoList, setTodos }) => {
+  setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
+}> = ({ index, todo, todoList, setTodoList }) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.content);
 
   const inputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     inputRef.current?.focus();
   }, [edit]);
 
   const handleEdit = (e: React.FormEvent, id: number) => {
     e.preventDefault();
-    setTodos(todoList.map((todo) => (todo.id === id ? { ...todo, content: editTodo } : todo)));
+    setTodoList(todoList.map((t) => (t.id === id ? { ...t, content: editTodo } : t)));
     setEdit(false);
   };
 
-  const handleDelete = (id: number) => {
-    setTodos(todoList.filter((todo) => todo.id !== id));
+  const handleDelete = (id: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setTodoList(todoList.filter((t) => t.id !== id));
   };
 
-  const handleDone = (id: number) => {
-    setTodos(todoList.map((todo) => (todo.id === id ? { ...todo, isDone: !todo.isDone } : todo)));
+  const handleDone = (id: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setTodoList(todoList.map((t) => (t.id === id ? { ...t, isDone: !t.isDone } : t)));
   };
 
   return (
@@ -54,23 +56,25 @@ const TodoElement: React.FC<{
           ) : todo.isDone ? (
             <s className="todo__element__text">{todo.content}</s>
           ) : (
-            <span className="todo__element__text">{todo.content}</span>
-          )}
-          <div>
             <span
-              className="iconTodos"
+              className="todo__element__text"
               onClick={() => {
                 if (!edit && !todo.isDone) {
                   setEdit(!edit);
                 }
               }}
             >
+              {todo.content}
+            </span>
+          )}
+          <div>
+            <span className="iconTodos" onClick={(e) => handleEdit(e, todo.id)}>
               <AiFillEdit />
             </span>
-            <span className="iconTodos" onClick={() => handleDelete(todo.id)}>
+            <span className="iconTodos" onClick={(e) => handleDelete(todo.id, e)}>
               <AiFillDelete />
             </span>
-            <span className="iconTodos" onClick={() => handleDone(todo.id)}>
+            <span className="iconTodos" onClick={(e) => handleDone(todo.id, e)}>
               <MdDone />
             </span>
           </div>
