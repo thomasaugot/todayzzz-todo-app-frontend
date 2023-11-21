@@ -4,12 +4,12 @@
 
 This is the frontend of my todo list app I named TODAYZZZ TODOS, providing a RESTful API for managing users, collections, and todo items.
 
-## tech stack
+## Tech stack
 
 - React.js
 - Typescript
 - SCSS
-- Initial database was built using Supabase's BaaS. I am currently working on switching it to a custom server I built using PostgrSQL. Link to this repo: https://github.com/thomasaugot/ts-todo-app-backend
+- Initial database was built using Supabase's BaaS. I am currently working on switching it to a custom server I built using PostgrSQL. Link to this repo: https://github.com/thomasaugot/todayzzz-todo-app-backend
 
 ## Installation
 
