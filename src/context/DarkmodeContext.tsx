@@ -1,5 +1,3 @@
-// DarkmodeContext.tsx
-
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 type DarkModeContextType = {
@@ -7,12 +5,18 @@ type DarkModeContextType = {
   setMode: (mode: "dark" | "light") => void;
 };
 
-export const DarkModeContext = createContext<DarkModeContextType | undefined>(undefined);
+export const DarkModeContext = createContext<DarkModeContextType | undefined>(
+  undefined
+);
 
 export function DarkModeProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<"dark" | "light">("dark");
 
-  return <DarkModeContext.Provider value={{ mode, setMode }}>{children}</DarkModeContext.Provider>;
+  return (
+    <DarkModeContext.Provider value={{ mode, setMode }}>
+      {children}
+    </DarkModeContext.Provider>
+  );
 }
 
 export function useDarkMode() {
