@@ -11,10 +11,18 @@ body {
   color: var(--text-color);
   background: var(--bg-gradient);
   margin: 0;
+  overflow-x: hidden;
 }
 
 .dark-mode {
   @include mode(dark);
+}
+
+@media (max-width: 768px) {
+  .App.dark-mode,
+  .App.light-mode {
+    margin: 0;
+  }
 }
 
 .light-mode {

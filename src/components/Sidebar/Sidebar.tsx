@@ -31,6 +31,7 @@ const Sidebar: React.FC = () => {
       borderRadius: "20px",
       margin: 0,
       padding: 0,
+      width: "60%",
     },
   };
 

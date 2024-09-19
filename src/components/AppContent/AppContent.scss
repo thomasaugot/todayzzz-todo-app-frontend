@@ -21,5 +21,9 @@
 
   .title-container {
     width: 70vw;
+
+    @media (max-width: 768px) {
+      margin-top: 8vh;
+    }
   }
 }
