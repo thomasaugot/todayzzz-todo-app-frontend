@@ -11,7 +11,7 @@ import {
   addTodoToBackend,
   updateTodoInBackend,
   deleteTodoFromBackend,
-} from "../services/TodoService";
+} from "../services/todoService";
 import { v4 as uuidv4 } from "uuid";
 
 export interface TodoContextType {

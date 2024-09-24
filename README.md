@@ -1,15 +1,16 @@
-# TODAYZZZ TODOS - Frontend
-
-![sqdhdd-removebg-preview](https://github.com/thomasaugot/typescript-todo-app-frontend/assets/117474095/664d2d99-bfb6-4325-8ecb-2673f62cfef9)
+# TODAYZZZ TODOS - Frontend - PERN stack - hosted on Netlify
 
 This is the frontend of my todo list app I named TODAYZZZ TODOS, providing a RESTful API for managing users, collections, and todo items.
 
 ## Tech stack
 
 - React.js
+- Context API
+- Jest for testing
 - Typescript
 - SCSS
-- Initial database was built using Supabase's BaaS. I am currently working on switching it to a custom server I built using PostgrSQL. Link to this repo: https://github.com/thomasaugot/todayzzz-todo-app-backend
+
+Link to the backend repo: https://github.com/thomasaugot/todayzzz-todo-app-backend
 
 ## Installation
 
