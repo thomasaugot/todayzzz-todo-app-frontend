@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import LoginForm from "./LoginForm";
-import { useDarkMode } from "../../context/DarkmodeContext";
+import { useDarkMode } from "../../context/DarkModeContext";
 import { BrowserRouter as Router } from "react-router-dom"; // To mock Link
 
 // Mocking useDarkMode

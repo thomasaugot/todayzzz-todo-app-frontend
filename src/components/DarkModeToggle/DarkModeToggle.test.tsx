@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import DarkModeToggle from "./DarkModeToggle";
-import { DarkModeProvider } from "../../context/DarkmodeContext";
+import { DarkModeProvider } from "../../context/DarkModeContext";
 
 export {};
 
@@ -14,7 +14,9 @@ describe("DarkModeToggle component", () => {
 
     // Assert that the component is rendered with the "dark" mode initially
     expect(screen.getByTestId("dark-mode-toggle")).toBeInTheDocument();
-    expect(screen.getByTestId("dark-mode-toggle-input")).toHaveAttribute("checked");
+    expect(screen.getByTestId("dark-mode-toggle-input")).toHaveAttribute(
+      "checked"
+    );
   });
 });
 

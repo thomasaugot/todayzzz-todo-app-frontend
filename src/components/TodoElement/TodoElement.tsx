@@ -1,83 +1,46 @@
-import { Todo } from "../../model";
-import { AiFillEdit, AiFillDelete } from "react-icons/ai";
-import { MdDone } from "react-icons/md";
+import React, { useState, useRef } from "react";
+import { Todo } from "../../models/Todo";
 import "./TodoElement.scss";
-import { useRef } from "react";
-import React, { useEffect, useState } from "react";
-import { Draggable } from "react-beautiful-dnd";
 
-const TodoElement: React.FC<{
-  index: number;
+interface TodoElementProps {
   todo: Todo;
-  todoList: Array<Todo>;
-  setTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
-}> = ({ index, todo, todoList, setTodos }) => {
+  index: number;
+  setTodos: (updatedTodo: Todo) => Promise<void>;
+}
+
+const TodoElement: React.FC<TodoElementProps> = ({ todo, index, setTodos }) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.content);
-
   const inputRef = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, [edit]);
 
-  const handleEdit = (e: React.FormEvent, id: number) => {
-    e.preventDefault();
-    setTodos(todoList.map((todo) => (todo.id === id ? { ...todo, content: editTodo } : todo)));
-    setEdit(false);
-  };
-
-  const handleDelete = (id: number) => {
-    setTodos(todoList.filter((todo) => todo.id !== id));
-  };
-
-  const handleDone = (id: number) => {
-    setTodos(todoList.map((todo) => (todo.id === id ? { ...todo, isDone: !todo.isDone } : todo)));
-    console.log("done!");
+  const handleEditToggle = () => {
+    setEdit(!edit);
+    if (!edit) {
+      setEditTodo(todo.content);
+      inputRef.current?.focus();
+    } else {
+      const updatedTodo = { ...todo, content: editTodo };
+      setTodos(updatedTodo);
+    }
   };
 
   return (
-    <Draggable draggableId={todo.id.toString()} index={index}>
-      {(provided, snapshot) => (
-        <form
-          onSubmit={(e) => handleEdit(e, todo.id)}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          ref={provided.innerRef}
-          className={`todo__element ${snapshot.isDragging ? "drag" : ""}`}
-        >
-          {edit ? (
-            <input
-              value={editTodo}
-              onChange={(e) => setEditTodo(e.target.value)}
-              className="todo__element__text"
-              ref={inputRef}
-            />
-          ) : todo.isDone ? (
-            <s className="todo__element__text">{todo.content}</s>
-          ) : (
-            <span className="todo__element__text">{todo.content}</span>
-          )}
-          <div>
-            <span
-              className="iconTodos"
-              onClick={() => {
-                if (!edit && !todo.isDone) {
-                  setEdit(!edit);
-                }
-              }}
-            >
-              <AiFillEdit />
-            </span>
-            <span className="iconTodos" onClick={() => handleDelete(todo.id)}>
-              <AiFillDelete />
-            </span>
-            <span className="iconTodos" onClick={() => handleDone(todo.id)}>
-              <MdDone />
-            </span>
-          </div>
-        </form>
+    <div className="todo__element">
+      {edit ? (
+        <input
+          ref={inputRef}
+          value={editTodo}
+          onChange={(e) => setEditTodo(e.target.value)}
+        />
+      ) : todo.isDone ? (
+        <s className="todo__element__text">{todo.content}</s>
+      ) : (
+        <span className="todo__element__text">{todo.content}</span>
       )}
-    </Draggable>
+      <div>
+        <button onClick={handleEditToggle}>{edit ? "Save" : "Edit"}</button>
+      </div>
+    </div>
   );
 };
 

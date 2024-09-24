@@ -1,38 +1,28 @@
 import React from "react";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { DragDropContext } from "react-beautiful-dnd";
 import Flip from "react-awesome-reveal";
 import Sidebar from "../Sidebar/Sidebar";
 import InputField from "../InputField/InputField";
 import TodoList from "../TodoList/TodoList";
-import { Todo } from "../../model";
-import { useDarkMode } from "../../context/DarkmodeContext";
+import { useDarkMode } from "../../context/DarkModeContext";
 import { useMediaQuery } from "react-responsive";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import "./AppContent.scss";
+import { useTodoContext } from "../../context/TodoContext";
 
-interface AppContentProps {
-  todo: string;
-  setTodo: any;
-  handleSubmit: (e: React.FormEvent) => void;
-  todoList: Todo[];
-  setTodoList: any;
-  completedTodos: Todo[];
-  setCompletedTodos: any;
-  onDragEnd: (result: DropResult) => void;
-}
-
-const AppContent: React.FC<AppContentProps> = ({
-  todo,
-  setTodo,
-  handleSubmit,
-  todoList,
-  setTodoList,
-  completedTodos,
-  setCompletedTodos,
-  onDragEnd,
-}) => {
+const AppContent: React.FC = () => {
+  const {
+    todo,
+    setTodo,
+    handleSubmit,
+    todoList,
+    completedTodos,
+    onDragEnd,
+    updateTodo,
+    setTodoList,
+    setCompletedTodos,
+  } = useTodoContext();
   const { mode } = useDarkMode();
-
   const isDesktopOrLaptop = useMediaQuery({ minWidth: 768 });
 
   return (
@@ -46,7 +36,6 @@ const AppContent: React.FC<AppContentProps> = ({
             </Flip>
           </div>
         </div>
-
         <InputField
           todo={todo}
           setTodo={setTodo}
@@ -58,6 +47,7 @@ const AppContent: React.FC<AppContentProps> = ({
           setTodoList={setTodoList}
           completedTodos={completedTodos}
           setCompletedTodos={setCompletedTodos}
+          updateTodo={updateTodo}
         />
       </div>
     </DragDropContext>

@@ -1,23 +1,36 @@
 import React from "react";
 import "./InputField.scss";
+import { addTodoToBackend } from "../../services/todoService";
+import { useTodoContext } from "../../context/TodoContext";
 
-// I create the interface so that I can define the type of my props on line 9
-interface Props {
+interface InputFieldProps {
   todo: string;
-  setTodo: React.Dispatch<React.SetStateAction<string>>; // I get the type of setTodo when hovering it in App.tsx line 6
-  handleSubmit: (e: React.FormEvent) => void;
+  setTodo: React.Dispatch<React.SetStateAction<string>>;
+  handleSubmit: (todoText: string) => void; // Update type to expect a string
   mode: "dark" | "light";
 }
 
-const InputField: React.FC<Props> = ({ todo, setTodo, handleSubmit }) => {
+const InputField: React.FC<InputFieldProps> = ({
+  todo,
+  setTodo,
+  handleSubmit,
+  mode,
+}) => {
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (todo.trim()) {
+      handleSubmit(todo);
+      // console.log("my todo added ---->", todo);
+      setTodo("");
+    }
+  };
+
   return (
-    <form className="input" onSubmit={handleSubmit} id="input-field">
+    <form className="input" onSubmit={onSubmit} id="input-field">
       <input
         type="text"
         value={todo}
-        onChange={(e) => {
-          setTodo(e.target.value);
-        }}
+        onChange={(e) => setTodo(e.target.value)}
         required
         className="input__box"
       />
